@@ -1,0 +1,21 @@
+import React from "react";
+import ImagesGallery from "../components/Gallery/Gallery";
+
+const About = () => {
+  return (
+    <section>
+      <section className="py-8 text-center px-6 md:px-12">
+        <h1 className="text-[40px]  font-bold  ">
+          Our <span className="text-BaseColor">Gallery</span>
+        </h1>
+        <p className="text-lg leading-8 mb-8 text-gray-800">
+          "Unveil travel wonders in our gallery, a snapshot of DevBhoomi's
+          adventures."
+        </p>
+        <ImagesGallery />
+      </section>
+    </section>
+  );
+};
+
+export default About;
