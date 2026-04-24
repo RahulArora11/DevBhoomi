@@ -9,7 +9,8 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 const app = express();
@@ -47,6 +48,9 @@ app.use("/api/booking", bookingRoutes);
 app.get('/api', (req, res) => {
   res.send('welcome to devbhoomi api');
 });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist'))); 
