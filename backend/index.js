@@ -9,6 +9,7 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+const path = require('path');
 
 dotenv.config();
 const app = express();
@@ -43,9 +44,17 @@ app.use("/api/tour", tourRoutes);
 app.use("/api/review", reviewRoutes);
 app.use("/api/booking", bookingRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the DevBhoomi API!");
+app.get('/api', (req, res) => {
+  res.send('welcome to devbhoomi api');
 });
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/dist'))); 
+
+  app.get(/.*/, (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
